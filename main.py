@@ -5,7 +5,7 @@ import random
 
 AIO_FEED_ID = ["nutnhan1", "nutnhan2"]
 AIO_USERNAME = "duydao0604"
-AIO_KEY = "aio_rTSc5759iet2mJUIS53su7F5AIXy"
+AIO_KEY = "aio_gzKU66kMLGTzDJvLLD39J8VIAFYK"
 
 def connected(client):
     print("Ket noi thanh cong ...")
@@ -31,6 +31,7 @@ client.connect()
 client.loop_background()
 counter = 10
 sensor_type = 0
+
 while True:
     counter = counter - 1
     if counter <= 0:
@@ -52,5 +53,4 @@ while True:
             humi = random.randint(50, 70)
             client.publish("cambien3", humi)
     time.sleep(1)
-
     pass
