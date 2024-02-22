@@ -2,9 +2,11 @@ import sys
 from Adafruit_IO import MQTTClient
 import time
 import random
+from simple_ai import *
 
 AIO_FEED_ID = ["nutnhan1", "nutnhan2"]
 AIO_USERNAME = "duydao0604"
+# AIO_KEY = "aio_jydk61Yvp3OqsIdiVv2FtKpUTMLq" # *
 AIO_KEY = "aio_gzKU66kMLGTzDJvLLD39J8VIAFYK"
 
 def connected(client):
@@ -31,7 +33,9 @@ client.connect()
 client.loop_background()
 counter = 10
 sensor_type = 0
-
+counter_ai = 5
+ai_result = ""
+previous_result = ""
 while True:
     counter = counter - 1
     if counter <= 0:
@@ -52,5 +56,13 @@ while True:
             sensor_type = 0
             humi = random.randint(50, 70)
             client.publish("cambien3", humi)
+    counter_ai = counter_ai - 1
+    if counter_ai <= 0:
+        counter_ai = 5
+        previous_result = ai_result
+        ai_result = image_detector()
+        print("AI Output", ai_result)
+        if previous_result != ai_result:
+            client.publish("ai", ai_result)
     time.sleep(1)
     pass
