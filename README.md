@@ -22,4 +22,4 @@
   python3 main.py
 ```
 
-**Note**: Please make sure to check the program's documentation or the report to obtain any necessary keys before running the program.
+**Note**: Please make sure to check the report lab 2 to obtain any necessary keys before running the program.
